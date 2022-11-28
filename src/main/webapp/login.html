@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="img/android-icon-36x36.png" rel="shortcut icon" type="image/x-icon">
+    <title>로그인</title>
+    <link rel="stylesheet" href="bootstrap-5.2.2-dist/css/bootstrap.min.css">
+    <script src="bootstrap-5.2.2-dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+  <div class="mt-5">
+    <div class="container col-3 pt-3 bg-light pb-3">
+      <h1 class="text-center">
+        <img src="img/android-icon-36x36.png" alt="로고" width="33" height="33" class="mb-2">
+        <a class="navbar-brand text-center" href="index.html">
+          저항시인
+       </a>
+    </h1> 
+      <form>
+        <div class="row">
+            <label for="id" class="col-form-label">아이디</label>
+        </div>
+        <div class="input-group">
+          <input type="text" name="id" class="form-control" required>
+        </div>
+        <div class="row">
+          <label for="pwd" class="col-form-label">비밀번호</label>
+        </div>
+        <div class="input-group">
+          <input type="text" name="pwd" class="form-control" required>
+        </div>
+        <div class="input-group mt-3">
+          <input type="submit" value="로그인" class="form-control" placeholder="Recipient's username">
+        </div>
+      </form>
+      <div class="input-group mt-3">
+        <input type="submit" value="회원가입" class="form-control" placeholder="Recipient's username" onClick="location.href='./sin.html'">
+      </div>
+  </div>
+</div>
+</body>
+</html>
