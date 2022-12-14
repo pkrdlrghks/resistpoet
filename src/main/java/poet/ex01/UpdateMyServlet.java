@@ -30,7 +30,7 @@ public class UpdateMyServlet extends HttpServlet {
 		vo.setEmail(email);
 		MemberDAO dao=new MemberDAO();
 		dao.updateMy(vo);
-		response.sendRedirect("/mypageServlet");
+		response.sendRedirect("./mypageServlet");
 	}
 
 }

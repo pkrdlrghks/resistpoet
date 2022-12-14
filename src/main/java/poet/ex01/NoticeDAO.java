@@ -128,12 +128,12 @@ public class NoticeDAO {
         }
 		
 	}
-	public void delete(int noticeNum) {
+	public void delete(NoticeVO vo) {
 		try {
 			con = dataSource.getConnection();
             String query = "deletr notice where noticeNum=?";
             preparedStatement = con.prepareStatement(query);
-            preparedStatement.setInt(1, noticeNum);
+            preparedStatement.setInt(1, vo.getNoticeNum());
             preparedStatement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

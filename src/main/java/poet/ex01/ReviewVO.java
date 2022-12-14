@@ -6,7 +6,13 @@ public class ReviewVO {
 	private String id;
 	private String review;
 	private Date writeDate;
-	
+	private String poetTitle;
+	public String getPoetTitle() {
+		return poetTitle;
+	}
+	public void setPoetTitle(String poetTitle) {
+		this.poetTitle = poetTitle;
+	}
 	public ReviewVO() {
 		
 	}

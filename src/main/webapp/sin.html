@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,22 +17,36 @@
       }
     </style>
     <script type="text/javascript">
-    	function checkId() {
-        var checkingId=document.forms.checkingId();
-        if(checkId == null && checkId.length !=0){
-          window.open("/checkServlet?checkingId="+checkingId,"아이디체크 창","with=500, height=300")
-        }else{
-          alert("아이디가 입력 되지 않았습니다.")
-        }
+    	function checkId(){
+	        var checkingId=document.sinDater.checkingId.value;
+	        if(checkId != null || checkId.length !=0){
+	          window.open("temporarily.jsp?checkingId="+checkingId,"아이디체크 창","with=500, height=300")
+	        }else{
+	          alert("아이디가 입력 되지 않았습니다.")
+	        }
 		  }
       function formCheck(){
-        var checkPwd=(document.sinDater.pwd.value == document.sinDater.pwd.pwdCheck)
-        var checkId=(document.sinDater.checkingId.value == document.sinDater.id.value)
+        let checkId=document.sinDater.checkingId.value != "" && document.sinDater.checkingId.value == document.sinDater.id.value
+        let checkPwd=document.sinDater.pwd.value != "" && document.sinDater.pwd.value == document.sinDater.pwdCheck.value
+        let checkName=document.sinDater.name.value != ""
+        let checkTel=document.sinDater.tel.value != ""
+        let checkEmail=document.sinDater.email.value != ""
         if(!checkId){
-          alert("아이디를 확인해 주세요")
+          alert("아이디를 확인해 주세요"+checkId)
+          return;
         }else if(!checkPwd){
-          alert("비밀번호를  확인해 주세요")
-        }else{
+          alert("비밀번호를 확인해 주세요"+checkPwd)
+          return;
+        }else if (!checkName ) {
+        	alert("이름을 확인해 주세요"+checkName)
+            return;
+		}else if (!checkTel) {
+			alert("전화번호를 확인해 주세요")
+	        return;
+		}else if (!checkEmail) {
+			alert("이메일을 확인해 주세요")
+	        return;
+		}else{
           document.sinDater.submit();
         }
       }
@@ -50,20 +64,20 @@
       </nav>
     </header>
     <div class="btn-group-vertical" id="navigation" role="group" aria-label="Vertical button group">
-      <a href="./index.html#isanghwa" class="btn btn-dark">이상화</a>
-      <a href="./index.html#iyugsa" class="btn btn-dark">이육사</a>
-      <a href="./index.html#yundongju" class="btn btn-dark">윤동주</a>
+      <a href="index.jsp#isanghwa" class="btn btn-dark">이상화</a>
+      <a href="index.jsp#iyugsa" class="btn btn-dark">이육사</a>
+      <a href="index.jsp#yundongju" class="btn btn-dark">윤동주</a>
     </div> 
     <div class="container col-4 mt-5 mb-5 bg-light pb-3 pt-3 rounded">
       <h3 class="text-center">회원가입</h3>
-      <form action="/sinServlet" method="post" name="sinDater">
+      <form action="sinServlet" method="post" name="sinDater">
         <div class="row">
             <label for="inputPassword6" class="col-form-label">아이디</label>
         </div>
         <div class="input-group">
           <input type="text" class="form-control" name="checkingId" required>
-          <input type="hidden" class="form-control" name="id" value="">
-          <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="">아이디 확인</button>
+          <input type="hidden" class="form-control" name="id">
+          <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="checkId()">아이디 확인</button>
         </div>
         <div class="row">
           <label for="pwd" class="col-form-label" >비밀번호</label>
@@ -76,21 +90,26 @@
         </div>
         <div class="input-group">
           <input type="password" name="pwdCheck" class="form-control" required>
+        </div> <div class="row">
+          <label for="pwdCheck" class="col-form-label" >이름</label>
+        </div>
+        <div class="input-group">
+          <input type="text" name="name" class="form-control" required>
         </div>
         <div class="row">
           <label for="inputPassword6" class="col-form-label" >전화번호</label>
         </div>
         <div class="input-group">
-          <input type="tel" class="form-control" required>
+          <input type="tel" class="form-control" required name="tel" required>
         </div>
         <div class="row">
           <label for="inputPassword6" class="col-form-label">이메일</label>
         </div>
         <div class="input-group">
-          <input type="email" class="form-control" required>
+          <input type="email" class="form-control" required name="email">
         </div>
         <div class="input-group mt-3">
-          <input type="button" value="회원가입" onclick="" class="form-control" placeholder="Recipient's username">
+          <input type="button" value="회원가입" onclick="formCheck()" class="form-control" placeholder="Recipient's username">
         </div>
 
     </form>

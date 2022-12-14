@@ -22,9 +22,13 @@ public class addReview extends HttpServlet {
 		String id=(String)request.getSession().getAttribute("id");
 		String review=(String)request.getParameter("review");
 		String poitTitle=(String)request.getParameter("poetTitle");
+		ReviewVO vo=new ReviewVO();
+		vo.setId(id);
+		vo.setReview(review);
+		vo.setPoetTitle(poitTitle);
 		ReviewDAO dao=new ReviewDAO();
-		dao.addList(id,review,poitTitle);
-		response.sendRedirect("/setpoet?poetTitle="+poitTitle);
+		dao.addList(vo);
+		response.sendRedirect("setpoet?poetTitle="+poitTitle);
 	}
 
 }

@@ -7,7 +7,7 @@
     pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-	MemberVO vo=request.getAttribute("setmypage");
+	MemberVO vo=(MemberVO)request.getAttribute("setmypage");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,21 +32,21 @@
   <header>
     <nav class="navbar sticky-top bg-danger bg-gradient">
         <div class="container">
-            <a class="navbar-brand" href="boot.html">
+            <a class="navbar-brand" href="index.jsp">
               <img src="img/android-icon-36x36.png" alt="로고" width="30" height="24">저항시인
             </a>
-            <a href="index.html" class="navbar-brand" onclick="session.invalidate();">로그아웃</a>
+            <a href="logoutServlet" class="navbar-brand">로그아웃</a>
         </div>
       </nav>
     </header>
     <div class="btn-group-vertical" id="navigation" role="group" aria-label="Vertical button group">
-      <a href="./index.html#isanghwa" class="btn btn-dark">이상화</a>
-      <a href="./index.html#iyugsa" class="btn btn-dark">이육사</a>
-      <a href="./index.html#yundongju" class="btn btn-dark">윤동주</a>
-    </div> 
+      <a href="index.jsp#isanghwa" class="btn btn-dark">이상화</a>
+      <a href="index.jsp#iyugsa" class="btn btn-dark">이육사</a>
+      <a href="index.jsp#yundongju" class="btn btn-dark">윤동주</a>
+    </div>  
     <div class="container col-4 mt-5 mb-5 bg-light pb-3 pt-3 rounded">
       <h3 class="text-center">회원 정보</h3>
-      <form action="/updateMypage.jsp" method="post">
+      <form action="updateMypage.jsp" method="post">
         <div class="row">
             <label for="id" class="col-form-label">아이디</label>
         </div>
@@ -76,7 +76,7 @@
         </div>
     </form>
   </div>
-  <footer class="pt-1  border-top bg-primary bg-gradient">
+  <footer class="p-1 border-top bg-primary bg-gradient">
     <h4 class="text-center">출처</h4>
     <div class="grid container text-center">
         <a class="link-dark" style="text-decoration: none;" href="http://www.sanghwa.org/">이상화 기념 사업회</a>

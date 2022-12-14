@@ -1,14 +1,20 @@
 package poet.ex01;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+
 public class MemberDAO {
+	final String DBURL="jdbc:mysql://database-1.c38cyhhw9v6s.ap-northeast-2.rds.amazonaws.com/poet";
+	final String DBID="admin";
+	final String DBPWD="fGpB5KsUW72M9rxjqmZf";
 	Connection con = null;
 	DataSource dataSource = null;
 	PreparedStatement preparedStatement = null;
@@ -16,8 +22,8 @@ public class MemberDAO {
     // 생성자에서 DB연결 설정
     public MemberDAO() {
         try {
-            Context init = new InitialContext();
-            dataSource = (DataSource)init.lookup("java:comp/env/jdbc/mysql");
+            Class.forName("com.mysql.jdbc.Driver");
+            con=DriverManager.getConnection(DBURL,DBID,DBPWD);
             System.out.println("연결 성공");
         } catch (Exception e) {
             System.out.println("연결 실패");
@@ -30,7 +36,6 @@ public class MemberDAO {
 		String id=vo.getId();
 		String pwd=vo.getPwd();
 		try {
-    		con = dataSource.getConnection();
             String query = "select * from member where id=? and pwd=?";
             preparedStatement = con.prepareStatement(query);
             preparedStatement.setString(1, id);
@@ -52,9 +57,10 @@ public class MemberDAO {
 		return check;
 	}
 	//회원가입
-	public void addMember(MemberVO vo) {
+	public boolean addMember(MemberVO vo) {
+		boolean clear=false;
 		try {
-			con=dataSource.getConnection();
+			
 			String sql="insert into member values(?,?,?,?,?)";
 			preparedStatement =con.prepareStatement(sql);
 			preparedStatement.setString(1, vo.getId());
@@ -63,6 +69,7 @@ public class MemberDAO {
 			preparedStatement.setString(4, vo.getTel());
 			preparedStatement.setString(5, vo.getEmail());
 			preparedStatement.executeUpdate();
+			clear=true;
 		} catch (Exception e) {
 			e.printStackTrace();
             System.out.println("회원 추가 실패");
@@ -74,12 +81,13 @@ public class MemberDAO {
 	                e.printStackTrace();
 	            }
 		}
+		return clear;
 	}
 	//마이페이지 세팅
 	public MemberVO setMypage(String id) {
 		MemberVO vo=new MemberVO();
 		try {
-			con=dataSource.getConnection();
+			
 			String sql="select * from member where id=?";
 			preparedStatement =con.prepareStatement(sql);
 			preparedStatement.setString(1, id);
@@ -113,8 +121,8 @@ public class MemberDAO {
 		String tel=vo.getTel();
 		String email=vo.getEmail();
 		try {
-			con=dataSource.getConnection();
-			String sql="update member pwd=?,name=?,tel=?,email=? where id=?";
+			
+			String sql="update member set pwd=?,name=?,tel=?,email=? where id=?";
 			preparedStatement =con.prepareStatement(sql);
 			preparedStatement.setString(1, pwd);
 			preparedStatement.setString(2, name);
@@ -137,7 +145,7 @@ public class MemberDAO {
 	public boolean checkId(String chekingId) {
 		boolean result=false;
 		try {
-			con=dataSource.getConnection();
+			
 			String sql="select id from member where id=?";
 			preparedStatement =con.prepareStatement(sql);
 			preparedStatement.setString(1, chekingId);

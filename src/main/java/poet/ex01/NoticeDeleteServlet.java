@@ -21,8 +21,10 @@ public class NoticeDeleteServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		int noticeNum=Integer.parseInt(request.getParameter("noticeNum"));
+		NoticeVO vo=new NoticeVO();
+		vo.setNoticeNum(noticeNum);
 		NoticeDAO dao=new NoticeDAO();
-		dao.delete(noticeNum);
+		dao.delete(vo);
 		response.sendRedirect("/notice.jsp");
 	}
 

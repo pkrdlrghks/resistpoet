@@ -17,9 +17,8 @@ public class MypageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=utf-8");
 		String id=request.getSession().getAttribute("id").toString();
 		MemberDAO DAO=new MemberDAO();
 		MemberVO vo= DAO.setMypage(id);

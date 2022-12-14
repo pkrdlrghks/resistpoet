@@ -1,10 +1,28 @@
-<!DOCTYPE html>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+	String text="";
+	String href="";
+	if(session.getAttribute("id") != null){
+		text="마이페이지";
+		href="./mypageServlet";
+	}else{
+		text="로그인";
+		href="./login.html";
+	}
+	
+%>
+	<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="bootstrap-5.2.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-5.2.2-dist/css/bootstrap.min.css" type="text/css">
     <script src="bootstrap-5.2.2-dist/js/bootstrap.bundle.min.js"></script>
     <style>
       #navigation{
@@ -14,7 +32,6 @@
         transform: translateY(-50%);
       }
     </style>
-    <script src="main.js"></script>
     <link href="img/android-icon-36x36.png" rel="shortcut icon" type="image/x-icon">
     <title>저항시인</title>
 </head>
@@ -22,17 +39,17 @@
   <header>
     <nav class="navbar sticky-top bg-danger bg-gradient">
         <div class="container">
-            <a class="navbar-brand" href="boot.html">
+            <a class="navbar-brand" href="index.jsp">
               <img src="img/android-icon-36x36.png" alt="로고" width="30" height="24">저항시인
             </a>
-            <a class="navbar-brand" id="nextLink"></a>
+            <a href="<%=href %>" class="navbar-brand" id="nextLink"><%=text %></a>
         </div>
       </nav>
     </header>
     <div class="btn-group-vertical" id="navigation" role="group" aria-label="Vertical button group">
-      <a href="./index.html#isanghwa" class="btn btn-dark">이상화</a>
-      <a href="./index.html#iyugsa" class="btn btn-dark">이육사</a>
-      <a href="./index.html#yundongju" class="btn btn-dark">윤동주</a>
+      <a href="index.jsp#isanghwa" class="btn btn-dark">이상화</a>
+      <a href="index.jsp#iyugsa" class="btn btn-dark">이육사</a>
+      <a href="index.jsp#yundongju" class="btn btn-dark">윤동주</a>
     </div> 
   <article class="mt-5">
     <article>
@@ -57,11 +74,11 @@
         </div>
           <div class="text-center" style="width: 100%;">
             <div class="card-body">
-              <a href="./setpoet?poetTitle=towriter" class="card-link link-dark" style="text-decoration: none;">시인에게</a>
-              <a href="./setpoet?poetTitle=wailing" class="card-link link-dark" style="text-decoration: none;">통곡</a>
-              <a href="./setpoet?poetTitle=reversesky" class="card-link link-dark" style="text-decoration: none;">역천</a>
-              <a href="./setpoet?poetTitle=spring" class="card-link link-dark" style="text-decoration: none;">빼앗긴 들에도 봄은 오는가</a>
-              <a href="./setpoet?poetTitle=eatsun" class="card-link link-dark" style="text-decoration: none;">나는 해를 먹다</a>
+              <a href="poetview.jsp?poetTitle=towriter" class="card-link link-dark" style="text-decoration: none;">시인에게</a>
+              <a href="poetview.jsp?poetTitle=wailing" class="card-link link-dark" style="text-decoration: none;">통곡</a>
+              <a href="poetview.jsp?poetTitle=reversesky" class="card-link link-dark" style="text-decoration: none;">역천</a>
+              <a href="poetview.jsp?poetTitle=spring" class="card-link link-dark" style="text-decoration: none;">빼앗긴 들에도 봄은 오는가</a>
+              <a href="poetview.jsp?poetTitle=eatsun" class="card-link link-dark" style="text-decoration: none;">나는 해를 먹다</a>
             </div>
         </div>
       </div>
@@ -83,11 +100,11 @@
       </div>
     <div class="text-center" style="width: 100%;">
         <div class="card-body">
-          <a href="./setpoet?poetTitle=greengrape" class="card-link link-dark" style="text-decoration: none;">청포도</a>
-          <a href="./setpoet?poetTitle=peak" class="card-link link-dark" style="text-decoration: none;">절정</a>
-          <a href="./setpoet?poetTitle=field" class="card-link link-dark" style="text-decoration: none;">광야</a>
-          <a href="./setpoet?poetTitle=twilight" class="card-link link-dark" style="text-decoration: none;">황혼</a>
-          <a href="./setpoet?poetTitle=notitle" class="card-link link-dark" style="text-decoration: none;">무제</a>
+          <a href="poetview.jsp?poetTitle=greengrape" class="card-link link-dark" style="text-decoration: none;">청포도</a>
+          <a href="poetview.jsp?poetTitle=peak" class="card-link link-dark" style="text-decoration: none;">절정</a>
+          <a href="poetview.jsp?poetTitle=field" class="card-link link-dark" style="text-decoration: none;">광야</a>
+          <a href="poetview.jsp?poetTitle=twilight" class="card-link link-dark" style="text-decoration: none;">황혼</a>
+          <a href="poetview.jsp?poetTitle=notitle" class="card-link link-dark" style="text-decoration: none;">무제</a>
 
         </div>
       </div>
@@ -110,11 +127,11 @@
         </div>
       <div class="text-center" style="width: 100%;">
           <div class="card-body">
-            <a href="./setpoet?poetTitle=prologue" class="card-link link-dark" style="text-decoration: none;">서시</a>
-            <a href="./setpoet?poetTitle=cross" class="card-link link-dark" style="text-decoration: none;">십자가</a>
-            <a href="./setpoet?poetTitle=night" class="card-link link-dark" style="text-decoration: none;">별 헤는 밤</a>
-            <a href="./setpoet?poetTitle=confession" class="card-link link-dark" style="text-decoration: none;">참회록</a>
-            <a href="./setpoet?poetTitle=toeasy" class="card-link link-dark" style="text-decoration: none;">쉽게 쓰여진씨</a>  
+            <a href="poetview.jsp?poetTitle=prologue" class="card-link link-dark" style="text-decoration: none;">서시</a>
+            <a href="poetview.jsp?poetTitle=cross" class="card-link link-dark" style="text-decoration: none;">십자가</a>
+            <a href="poetview.jsp?poetTitle=night" class="card-link link-dark" style="text-decoration: none;">별 헤는 밤</a>
+            <a href="poetview.jsp?poetTitle=confession" class="card-link link-dark" style="text-decoration: none;">참회록</a>
+            <a href="poetview.jsp?poetTitle=toeasy" class="card-link link-dark" style="text-decoration: none;">쉽게 쓰여진씨</a>  
           </div>
         </div>
       </div>
@@ -122,7 +139,7 @@
     
   </article>
   <div class="text-end m-1"><a href="./notice.html" class="btn btn-primary disabled" role="button" aria-disabled="true">공지사항</a></div>
-  <footer class="pt-1  border-top bg-primary bg-gradient">
+  <footer class="p-1 border-top bg-primary bg-gradient ">
     <h4 class="text-center">출처</h4>
     <div class="grid container text-center">
         <a class="link-dark" style="text-decoration: none;" href="http://www.sanghwa.org/">이상화 기념 사업회</a>

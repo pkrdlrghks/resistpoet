@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
 		if(loginCheck) {
 			HttpSession session=request.getSession();
 			session.setAttribute("id", id);
-			response.sendRedirect("/index.html");
+			response.sendRedirect("./index.jsp");
 		}else {
 			PrintWriter w = response.getWriter();
 	        w.write("<script>alert('아이디 또는 비밀번호가 틀립니다.');location.href='./login.html';</script>");

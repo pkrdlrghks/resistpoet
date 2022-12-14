@@ -26,26 +26,37 @@
         transform: translateY(-50%);
       }
     </style>
+    <script type="text/javascript">
+
+      function formCheck(){
+        var checkPwd=(document.sinDater.pwd.value == document.sinDater.pwdCheck.value)
+      	if(!checkPwd){
+          alert("비밀번호를  확인해 주세요")
+        }else{
+          document.sinDater.submit();
+        }
+      }
+    </script>
 </head>
 <body>
   <header>
     <nav class="navbar sticky-top bg-danger bg-gradient">
         <div class="container">
-            <a class="navbar-brand" href="boot.html">
+            <a class="navbar-brand" href="index.jsp">
               <img src="img/android-icon-36x36.png" alt="로고" width="30" height="24">저항시인
             </a>
-            <a href="index.html" class="navbar-brand" onclick="session.invalidate();">로그아웃</a>
+            <a href="./logoutServlet" class="navbar-brand">로그아웃</a>
         </div>
       </nav>
     </header>
     <div class="btn-group-vertical" id="navigation" role="group" aria-label="Vertical button group">
-      <a href="./index.html#isanghwa" class="btn btn-dark">이상화</a>
-      <a href="./index.html#iyugsa" class="btn btn-dark">이육사</a>
-      <a href="./index.html#yundongju" class="btn btn-dark">윤동주</a>
+      <a href="index.jsp#isanghwa" class="btn btn-dark">이상화</a>
+      <a href="index.jsp#iyugsa" class="btn btn-dark">이육사</a>
+      <a href="index.jsp#yundongju" class="btn btn-dark">윤동주</a>
     </div> 
     <div class="container col-4 mt-5 mb-5 bg-light pb-3 pt-3 rounded">
       <h3 class="text-center">회원 정보</h3>
-      <form action="/updateMyServlet" method="post">
+      <form action="updateMyServlet" method="post" name="sinDater">
         <div class="row">
             <label for="id" class="col-form-label">아이디</label>
         </div>
@@ -83,7 +94,7 @@
           <input type="email" class="form-control" name="email" value='<%=request.getParameter("email").toString()%>' required>
         </div>
         <div class="input-group mt-3">
-          <input type="submit" value="회원 정보 변경" class="form-control" placeholder="Recipient's username">
+          <input type="button" value="회원 정보 변경" class="form-control" onclick="formCheck()">
         </div>
     </form>
   </div>

@@ -1,11 +1,20 @@
 package poet.ex01;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +29,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.apache.jasper.tagplugins.jstl.core.Url;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -29,18 +39,20 @@ import org.w3c.dom.Node;
 public class SetPoet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("utf-8");
 		String poetTitle=request.getParameter("poetTitle");
-		String content= doGetFile(poetTitle);
-		//doGetURL(request, response);
+		String address=request.getRequestURL().toString().replace(request.getRequestURI(), "/poet/poet.xml");
+		//String content= doGetURL(poetTitle,address);
+		//String content= doGetFile(poetTitle);
 		ReviewDAO dao=new ReviewDAO();
 		ArrayList<ReviewVO> reviewlist=dao.listView(poetTitle);
-		request.setAttribute("content", content);
+		//request.setAttribute("content", content);
 		request.setAttribute("reviewlist", reviewlist);
+		request.setAttribute("poetTitle", poetTitle);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/poetview.jsp");
         requestDispatcher.forward(request, response);
 	}
-	protected String doGetFile(String poetTitle) throws ServletException, IOException {
+	/*protected String doGetFile(String poetTitle){
 		String content=null;
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -63,36 +75,64 @@ public class SetPoet extends HttpServlet {
 		}
 		return content;
 	}
-	protected void doGetURL(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String poetTitle=request.getParameter("name");
+	protected String doGetURL(String poetTitle, String address) {
+		String content=null;
+		String xml=URLBuffer(address);
+		System.out.println(xml);
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		    factory.setValidating(true);
 		    factory.setIgnoringElementContentWhitespace(true);
 		    DocumentBuilder builder = factory.newDocumentBuilder();
-		    File file = new File("C:\\JAVAEXE\\poet\\src\\main\\webapp\\poet.xml");
-		    /*URL url= new URL("http://127.0.0.1:8080/poet/poet.xml");
-		    System.out.println("접속");
-		    
-		    BufferedReader buffer=new BufferedReader(new InputStreamReader(url.openStream(),"UTF-8"));
-		    System.out.println("읽기형식 지정");*/
-		   //Document doc = (Document) builder.parse(buffer.readLine());
-		    Document doc = builder.parse(file);
+		    InputStream stream=new ByteArrayInputStream(xml.getBytes());
+		    Document doc = builder.parse(stream);
 		    Element root= doc.getDocumentElement();
-		    Node node = root.getElementsByTagName("poet").item(0);
+		    Node node = root.getElementsByTagName(poetTitle).item(0);
             Transformer tf = TransformerFactory.newInstance().newTransformer();
             tf.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
             tf.setOutputProperty(OutputKeys.INDENT, "yes");
             Writer out = new StringWriter();
             tf.transform(new DOMSource(node), new StreamResult(out));
-            String content=out.toString();
-            //request.setAttribute("content", content);
-            System.out.println(content);
-           
+            content=out.toString();
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("반영 실패");
 			System.out.println(e);
+			e.printStackTrace();
 		}
+		return content;
 	}
+	private String URLBuffer(String address) {
+		System.out.println(address);
+		String XML="";
+		StringBuilder sBulder=new StringBuilder();
+		try {
+			URL url=new URL(address);
+			HttpsURLConnection con=(HttpsURLConnection) url.openConnection();
+			con.setDoOutput(true);
+			con.setUseCaches(false);
+			con.setConnectTimeout(1000);
+			con.setReadTimeout(1000);
+			con.setRequestMethod("post");
+			con.setRequestProperty("Accept-Charset", "UTF-8");
+			con.setRequestProperty("CONTENT-TYPE","text/xml; charset=utf-8");
+			InputStreamReader isr=new InputStreamReader(con.getInputStream(),"UTF-8");
+			BufferedReader reader=new BufferedReader(isr);
+			while (true) {
+				String line=reader.readLine();
+				if(line == null) {
+					break;
+				}
+				sBulder.append(line.getBytes());
+			}
+			reader.close();
+		XML=sBulder.toString();
+		} catch (Exception e) {
+			System.out.println("불러오기 실패");
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		
+		return XML;
+	}*/
 
 }
