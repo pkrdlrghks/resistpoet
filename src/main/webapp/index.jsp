@@ -138,7 +138,7 @@
       </article>
     
   </article>
-  <div class="text-end m-1"><a href="./notice.html" class="btn btn-primary disabled" role="button" aria-disabled="true">공지사항</a></div>
+  <div class="text-end m-1"><a href="NoticeServlet" class="btn btn-primary" >공지사항</a></div>
   <footer class="p-1 border-top bg-primary bg-gradient ">
     <h4 class="text-center">출처</h4>
     <div class="grid container text-center">

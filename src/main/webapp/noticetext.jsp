@@ -9,6 +9,15 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	NoticeVO vo=(NoticeVO)request.getAttribute("noticeView");
+	String text="";
+	String href="";
+  	if(session.getAttribute("id") != null){
+		text="마이페이지";
+		href="./mypageServlet";
+	}else{
+		text="로그인";
+		href="./login.html";
+	}
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,10 +62,10 @@
   <header>
     <nav class="navbar sticky-top bg-danger bg-gradient">
         <div class="container">
-            <a class="navbar-brand" href="boot.html">
+            <a class="navbar-brand" href="index.jsp">
               <img src="img/android-icon-36x36.png" alt="로고" width="30" height="24">저항시인
             </a>
-            <a class="navbar-brand" id="nextLink"></a>
+            <a class="navbar-brand" href="<%=href%>"><%=text %></a>
         </div>
       </nav>
     </header>
@@ -70,10 +79,10 @@
       <form name="textForm" method="post">
       	<input type="hidden" name="noticeNum" value="<%=vo.getNoticeNum()%>">
         <div class="row">
-            <label for="inputPassword6" class="col-form-label">제목</label>
+            <label for="title" class="col-form-label">제목</label>
         </div>
         <div class="container row input-group  mb-3">
-          <input type="text" class="form-control" value="<%=vo.getTitle()%>">
+          <input type="text" class="form-control" name="title" value="<%=vo.getTitle()%>">
         </div>
         <div class="container row input-group  mb-3">
           <textarea class="form-control" name="content" id="" cols="20" rows="10"><%=vo.getContent() %></textarea>
@@ -84,7 +93,7 @@
           <input type="button" value="삭제하기" class="form-control" placeholder="Recipient's username" id="masterView" onclick="">
         </div>
     </form>
-    <div class="text-end m-1"><a href="./notice.html" class="btn btn-primary disabled" role="button" aria-disabled="true">목록으로</a></div>
+    <div class="text-end m-1"><a href="./notice.html" class="btn btn-primary">목록으로</a></div>
   </div>
 </body>
 </html>

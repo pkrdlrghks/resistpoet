@@ -14,15 +14,14 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/noticeViewServlet")
 public class NoticeViewServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
-	protected void doget(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		int noticeNum=Integer.parseInt(request.getParameter("noticeNum"));
+		int noticeNum=Integer.parseInt(request.getParameter("num"));
 		NoticeDAO dao=new NoticeDAO();
 		NoticeVO vo= dao.view(noticeNum);
 		request.setAttribute("noticeView", vo);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/noticetext.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("./noticetext.jsp");
         requestDispatcher.forward(request, response);
 	}
 

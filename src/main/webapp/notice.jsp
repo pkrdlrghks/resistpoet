@@ -9,6 +9,15 @@
 	request.setCharacterEncoding("UTF-8");
 	ArrayList<NoticeVO> vo=(ArrayList<NoticeVO>)request.getAttribute("noticevo");
   	Iterator voIterator=vo.iterator();
+  	String text="";
+	String href="";
+  	if(session.getAttribute("id") != null){
+		text="마이페이지";
+		href="./mypageServlet";
+	}else{
+		text="로그인";
+		href="./login.html";
+	}
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +56,7 @@
             <a class="navbar-brand" href="boot.html">
               <img src="img/android-icon-36x36.png" alt="로고" width="30" height="24">저항시인
             </a>
-            <a class="navbar-brand" id="nextLink"></a>
+            <a class="navbar-brand" href="<%=href%>"><%=text %></a>
         </div>
       </nav>
     </header>
@@ -60,14 +69,14 @@
       <h3 class="text-center">공지사항</h3>
       <a href="#">등록하기</a><br>
       <table class="table table-hover">
-        <td>
-          <tr>제목</tr><tr>날짜</tr>
-        </td>
+        <tr>
+          <td>제목</td><td>날짜</td>
+        </tr>
          <%
               	while(voIterator.hasNext()){
               		NoticeVO noticeDater=(NoticeVO)voIterator.next(); %>
                 <tr>
-                  <td><a href='./noticetext.jsp?num=<%=noticeDater.getNoticeNum()%>'><%=noticeDater.getTitle()%></a></td>
+                  <td><a href='noticeViewServlet?num=<%=noticeDater.getNoticeNum()%>'><%=noticeDater.getTitle()%></a></td>
                   <td><%=noticeDater.getUploadDate()%></td>
                 </tr>
                 <%} %>
