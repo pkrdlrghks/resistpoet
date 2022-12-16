@@ -37,6 +37,11 @@
         right: 0;
         transform: translateY(-50%);
       }
+      a { text-decoration: none; color: black; }
+      a:visited { text-decoration: none; }
+      a:hover { text-decoration: none; }
+      a:focus { text-decoration: none; }
+      a:hover, a:active { text-decoration: none; }
     </style>
     <script>
       var checkMaster=(window.sessionStorage.getItem("id")=="masster")
