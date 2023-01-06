@@ -11,7 +11,8 @@
   	Iterator voIterator=vo.iterator();
   	String text="";
 	String href="";
-  	if(session.getAttribute("id") != null){
+	String user=(String)session.getAttribute("id");
+  	if(user != null){
 		text="마이페이지";
 		href="./mypageServlet";
 	}else{
@@ -86,8 +87,12 @@
                 </tr>
                 <%} %>
       </table>
-        <div class="text-end m-1" id="masterView"><a href="./notice.html" class="btn btn-primary disabled" role="button" aria-disabled="true">등록하기</a></div>
-  </div>
+      <%if(user != null && user.equals("master")){ %>
+        <div class="text-end m-1" id="masterView">
+        	<a href="./notice.html" class="btn btn-primary disabled" role="button" aria-disabled="true">등록하기</a>
+        </div>
+  		<%} %>
+  	</div>
   <footer class="pt-1  border-top bg-primary bg-gradient">
     <h4 class="text-center">출처</h4>
     <div class="grid container text-center">

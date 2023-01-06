@@ -11,7 +11,8 @@
 	NoticeVO vo=(NoticeVO)request.getAttribute("noticeView");
 	String text="";
 	String href="";
-  	if(session.getAttribute("id") != null){
+	String user=(String)session.getAttribute("id");
+  	if(user != null){
 		text="마이페이지";
 		href="./mypageServlet";
 	}else{
@@ -39,15 +40,7 @@
       }
     </style>
     <script>
-      var checkMaster=(window.sessionStorage.getItem("id")=="masster")
-      var displayValue="none";
       var textForm=document.getElementsByName("textForm");
-      window.onload=function(){
-        if(checkMaster){
-          displayValue="inline";
-        }
-        document.getElementById("masterView").style("display", displayValue);
-      }
       function updateNotice(){
         textForm.action="/noticeUpdateServlet";
         textForm.submit();
@@ -87,13 +80,14 @@
         <div class="container row input-group  mb-3">
           <textarea class="form-control" name="content" id="" cols="20" rows="10"><%=vo.getContent() %></textarea>
         </div>
-        
+        <%if(user != null && user.equals("master")){%>
         <div class="row input-group">
-          <input type="button" value="수정하기" class="form-control" placeholder="Recipient's username" id="masterView" onclick="">
-          <input type="button" value="삭제하기" class="form-control" placeholder="Recipient's username" id="masterView" onclick="">
+          <input type="button" value="수정하기" class="form-control" onclick="updateNotice()">
+          <input type="button" value="삭제하기" class="form-control" onclick="deleteNotice()">
         </div>
+        <%} %>
     </form>
-    <div class="text-end m-1"><a href="./notice.html" class="btn btn-primary">목록으로</a></div>
+    <div class="text-end m-1"><a href="NoticeServlet" class="btn btn-primary">목록으로</a></div>
   </div>
 </body>
 </html>
