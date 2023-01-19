@@ -29,7 +29,6 @@ public class NoticeDAO extends DAO{
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-            System.out.println("공지사항 리스트 조회 실패");
         } finally {
             try {
                 resultSet.close();
@@ -56,7 +55,6 @@ public class NoticeDAO extends DAO{
 			vo.setUploadDate(resultSet.getDate("uploaddate"));
 		} catch (Exception e) {
 			e.printStackTrace();
-            System.out.println("공지사항 불러오기 실패");
         } finally {
             try {
                 resultSet.close();
@@ -78,7 +76,6 @@ public class NoticeDAO extends DAO{
             preparedStatement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-            System.out.println("공지사항 추가 실패");
         } finally {
             try {
                 preparedStatement.close();
@@ -100,7 +97,6 @@ public class NoticeDAO extends DAO{
             preparedStatement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-            System.out.println("공지사항 수정 실패");
         } finally {
             try {
                 preparedStatement.close();
@@ -119,7 +115,6 @@ public class NoticeDAO extends DAO{
             preparedStatement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-            System.out.println("공지사항 추가 실패");
         } finally {
             try {
                 preparedStatement.close();
@@ -140,7 +135,6 @@ public class NoticeDAO extends DAO{
             preparedStatement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-            System.out.println("공지사항 쓰기 실패");
         } finally {
             try {
                 preparedStatement.close();

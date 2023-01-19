@@ -1,9 +1,7 @@
 package poet.ex01;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.HashMap;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

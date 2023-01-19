@@ -7,13 +7,9 @@
     pageEncoding="utf-8"%>
 <%
 	//시처리 코드
-	
 	String poetTitle=request.getParameter("poetTitle").toString();
-System.out.print(poetTitle);
-	//String content= request.getAttribute("content").toString();
-	%>
-	
-	<%
+%>
+<%
 	//로그인에따른 표시
 	String text="";
 	String href="";

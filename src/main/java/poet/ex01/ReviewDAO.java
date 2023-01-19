@@ -33,7 +33,6 @@ public class ReviewDAO extends DAO{
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-            System.out.println("리뷰 조회 실패");
         } finally {
             try {
                 resultSet.close();
@@ -57,7 +56,6 @@ public class ReviewDAO extends DAO{
 			System.out.println(index);
 		} catch (Exception e) {
 			e.printStackTrace();
-            System.out.println("키 설정 실패");
 		}
 		try {
 			String sql="insert into reviewlist(id,review,poetTitle,_index) value(?,?,?,?)";
@@ -69,7 +67,6 @@ public class ReviewDAO extends DAO{
 			preparedStatement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-            System.out.println("리뷰 추가 실패");
 		}finally {
 			try {
                 preparedStatement.close();

@@ -27,7 +27,6 @@ public class MemberDAO extends DAO{
             check=resultSet.next();
 		} catch (Exception e) {
 			e.printStackTrace();
-            System.out.println("로그인 조회 실패");
         } finally {
             try {
                 resultSet.close();
@@ -55,7 +54,6 @@ public class MemberDAO extends DAO{
 			clear=true;
 		} catch (Exception e) {
 			e.printStackTrace();
-            System.out.println("회원 추가 실패");
 		}finally {
 			 try {
 	                preparedStatement.close();
@@ -86,7 +84,6 @@ public class MemberDAO extends DAO{
 			vo.setEmail(email);
 		} catch (Exception e) {
 			e.printStackTrace();
-            System.out.println("마이페이지 조회 실패");
 		}finally {
 			 try {
 	                preparedStatement.close();
@@ -115,7 +112,6 @@ public class MemberDAO extends DAO{
 			preparedStatement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-            System.out.println("마이정보 변경 실패");
 		}finally {
 			 try {
 	                preparedStatement.close();
@@ -136,7 +132,6 @@ public class MemberDAO extends DAO{
 			result=!resultSet.next();
 		} catch (Exception e) {
 			e.printStackTrace();
-            System.out.println("마이정보 변경 실패");
 		}finally {
 			 try {
 	                preparedStatement.close();
