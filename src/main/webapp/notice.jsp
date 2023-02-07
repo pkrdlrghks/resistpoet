@@ -89,7 +89,7 @@
       </table>
       <%if(user != null && user.equals("master")){ %>
         <div class="text-end m-1" id="masterView">
-        	<a href="./notice.html" class="btn btn-primary disabled" role="button" aria-disabled="true">등록하기</a>
+        	<a href="./noticewrite.html" class="btn btn-primary disabled" role="button" aria-disabled="true">등록하기</a>
         </div>
   		<%} %>
   	</div>
