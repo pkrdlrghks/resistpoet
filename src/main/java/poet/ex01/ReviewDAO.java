@@ -34,13 +34,7 @@ public class ReviewDAO extends DAO{
 		} catch (Exception e) {
 			e.printStackTrace();
         } finally {
-            try {
-                resultSet.close();
-                preparedStatement.close();
-                con.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        	closeAll();
         }
     	return listView;
 	}
@@ -54,11 +48,7 @@ public class ReviewDAO extends DAO{
 			resultSet.next();
 			index+=resultSet.getInt("reviewNum");
 			System.out.println(index);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			String sql="insert into reviewlist(id,review,poetTitle,_index) value(?,?,?,?)";
+			sql="insert into reviewlist(id,review,poetTitle,_index) value(?,?,?,?)";
 			preparedStatement=con.prepareStatement(sql);
 			preparedStatement.setString(1, vo.getId());
 			preparedStatement.setString(2, vo.getReview());
@@ -68,12 +58,7 @@ public class ReviewDAO extends DAO{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			try {
-                preparedStatement.close();
-                con.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+			closeAll();
 		}
 		
 	}

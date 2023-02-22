@@ -30,13 +30,7 @@ public class NoticeDAO extends DAO{
 		} catch (Exception e) {
 			e.printStackTrace();
         } finally {
-            try {
-                resultSet.close();
-                preparedStatement.close();
-                con.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+           closeAll();
         }
 		return volistt;
 	}
@@ -56,13 +50,7 @@ public class NoticeDAO extends DAO{
 		} catch (Exception e) {
 			e.printStackTrace();
         } finally {
-            try {
-                resultSet.close();
-                preparedStatement.close();
-                con.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        	closeAll();
         }
 		return vo;
 	}
@@ -77,12 +65,7 @@ public class NoticeDAO extends DAO{
 		} catch (Exception e) {
 			e.printStackTrace();
         } finally {
-            try {
-                preparedStatement.close();
-                con.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        	closeAll();
         }
 		
 	}
@@ -98,30 +81,20 @@ public class NoticeDAO extends DAO{
 		} catch (Exception e) {
 			e.printStackTrace();
         } finally {
-            try {
-                preparedStatement.close();
-                con.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        	closeAll();
         }
 		
 	}
 	public void delete(NoticeVO vo) {
 		try {
-            String query = "deletr notice where noticeNum=?";
+            String query = "delete notice where noticeNum=?";
             preparedStatement = con.prepareStatement(query);
             preparedStatement.setInt(1, vo.getNoticeNum());
             preparedStatement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
         } finally {
-            try {
-                preparedStatement.close();
-                con.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        	closeAll();
         }
 		
 	}
@@ -136,12 +109,7 @@ public class NoticeDAO extends DAO{
 		} catch (Exception e) {
 			e.printStackTrace();
         } finally {
-            try {
-                preparedStatement.close();
-                con.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        	closeAll();
         }
 		
 	}

@@ -26,11 +26,11 @@ public class LoginServlet extends HttpServlet {
 		String poetTitle=request.getParameter("poetTitle");
 		String id=request.getParameter("id");
 		String pwd=request.getParameter("pwd");
-		MemberDAO dao=new MemberDAO();
-		MemberVO vo=new MemberVO();
-		vo.setId(id);
-		vo.setPwd(pwd);
-		boolean loginCheck= dao.login(vo);
+		MemberDAO memberDao=new MemberDAO();
+		MemberVO memverVo=new MemberVO();
+		memverVo.setId(id);
+		memverVo.setPwd(pwd);
+		boolean loginCheck= memberDao.login(memverVo);
 		if(loginCheck) {
 			HttpSession session=request.getSession();
 			session.setAttribute("id", id);

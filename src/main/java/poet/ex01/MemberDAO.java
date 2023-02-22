@@ -28,13 +28,7 @@ public class MemberDAO extends DAO{
 		} catch (Exception e) {
 			e.printStackTrace();
         } finally {
-            try {
-                resultSet.close();
-                preparedStatement.close();
-                con.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            closeAll();
         }
 		return check;
 	}
@@ -55,12 +49,7 @@ public class MemberDAO extends DAO{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			 try {
-	                preparedStatement.close();
-	                con.close();
-	            } catch (Exception e) {
-	                e.printStackTrace();
-	            }
+			closeAll();
 		}
 		return clear;
 	}
@@ -85,12 +74,7 @@ public class MemberDAO extends DAO{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			 try {
-	                preparedStatement.close();
-	                con.close();
-	            } catch (Exception e) {
-	                e.printStackTrace();
-	            }
+			closeAll();
 		}
 		return vo;
 	}
@@ -113,12 +97,7 @@ public class MemberDAO extends DAO{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			 try {
-	                preparedStatement.close();
-	                con.close();
-	            } catch (Exception e) {
-	                e.printStackTrace();
-	            }
+			closeAll();
 		}
 	}
 	public boolean checkId(String chekingId) {
@@ -133,12 +112,7 @@ public class MemberDAO extends DAO{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			 try {
-	                preparedStatement.close();
-	                con.close();
-	            } catch (Exception e) {
-	                e.printStackTrace();
-	            }
+			closeAll();
 		}
 		return result;
 		

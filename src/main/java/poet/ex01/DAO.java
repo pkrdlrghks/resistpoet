@@ -26,5 +26,17 @@ public class DAO {
         	e.printStackTrace();
         }
     }
+    
+    public void closeAll() {
+		try {
+			con.close();
+			preparedStatement.close();
+			if(resultSet != null) {
+				resultSet.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
 

@@ -14,7 +14,7 @@ import com.mysql.cj.Session;
  * Servlet implementation class LogoutServlwt
  */
 @WebServlet("/logoutServlet")
-public class LogoutServlwt extends HttpServlet {
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
