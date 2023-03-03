@@ -40,14 +40,14 @@
       }
     </style>
     <script>
-      var textForm=document.getElementsByName("textForm");
+      //var textForm=document.getElementsByName("textForm");
       function updateNotice(){
         textForm.action="/noticeUpdateServlet";
-        textForm.submit();
+        textForm.submit;
       }
       function deleteNotice(){
         textForm.action="/noticeDeleteServlet";
-        textForm.submit();
+        textForm.submit;
       }
     </script>
 </head>

@@ -25,7 +25,7 @@ public class NoticeWriteServlet extends HttpServlet {
 		vo.setContent(request.getParameter("content"));
 		NoticeDAO dao=new NoticeDAO();
 		dao.write(vo);
-		response.sendRedirect("/notice.jsp");
+		response.sendRedirect("NoticeServlet");
 	}
 
 }

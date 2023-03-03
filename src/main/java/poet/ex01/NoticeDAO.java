@@ -100,8 +100,7 @@ public class NoticeDAO extends DAO{
 	}
 	public void write(NoticeVO vo) {
 		try {
-			con = dataSource.getConnection();
-            String query = "insert into notice title=?, content=?";
+            String query = "insert into notice(title, content) values(?,?)";
             preparedStatement = con.prepareStatement(query);
             preparedStatement.setString(1, vo.getTitle());
             preparedStatement.setString(2, vo.getContent());

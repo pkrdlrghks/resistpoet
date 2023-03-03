@@ -30,7 +30,7 @@
     <title>공지사항</title>
     <link rel="stylesheet" href="bootstrap-5.2.2-dist/css/bootstrap.min.css">
     <script src="bootstrap-5.2.2-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="main.js"></script>
+    <!-- <script src="main.js"></script>  -->
     <style>
       #navigation{
         position: fixed;
@@ -59,7 +59,7 @@
   <header>
     <nav class="navbar sticky-top bg-danger bg-gradient">
         <div class="container">
-            <a class="navbar-brand" href="boot.html">
+            <a class="navbar-brand" href="index.jsp">
               <img src="img/android-icon-36x36.png" alt="로고" width="30" height="24">저항시인
             </a>
             <a class="navbar-brand" href="<%=href%>"><%=text %></a>
@@ -89,7 +89,7 @@
       </table>
       <%if(user != null && user.equals("master")){ %>
         <div class="text-end m-1" id="masterView">
-        	<a href="./noticewrite.html" class="btn btn-primary disabled" role="button" aria-disabled="true">등록하기</a>
+        	<a href="./noticewrite.html" class="btn btn-primary" role="button">등록하기</a>
         </div>
   		<%} %>
   	</div>
