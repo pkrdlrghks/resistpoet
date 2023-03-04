@@ -25,7 +25,7 @@ public class NoticeDeleteServlet extends HttpServlet {
 		vo.setNoticeNum(noticeNum);
 		NoticeDAO dao=new NoticeDAO();
 		dao.delete(vo);
-		response.sendRedirect("/notice.jsp");
+		response.sendRedirect("NoticeServlet");
 	}
 
 }

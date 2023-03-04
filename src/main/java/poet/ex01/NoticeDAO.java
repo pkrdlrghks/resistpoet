@@ -87,7 +87,7 @@ public class NoticeDAO extends DAO{
 	}
 	public void delete(NoticeVO vo) {
 		try {
-            String query = "delete notice where noticeNum=?";
+            String query = "delete from notice where noticeNum=?";
             preparedStatement = con.prepareStatement(query);
             preparedStatement.setInt(1, vo.getNoticeNum());
             preparedStatement.executeUpdate();

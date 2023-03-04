@@ -42,12 +42,10 @@
     <script>
       //var textForm=document.getElementsByName("textForm");
       function updateNotice(){
-        textForm.action="/noticeUpdateServlet";
-        textForm.submit;
+        textForm.action="noticeUpdateServlet";
       }
       function deleteNotice(){
-        textForm.action="/noticeDeleteServlet";
-        textForm.submit;
+        textForm.action="noticeDeleteServlet";
       }
     </script>
 </head>
@@ -69,7 +67,7 @@
     </div> 
     <div class="container col-4 mt-5 mb-5 bg-light pb-3 pt-3 rounded">
       <h3 class="text-center">공지사항</h3>
-      <form name="textForm" method="post">
+      <form name="textForm" action="" method="post">
       	<input type="hidden" name="noticeNum" value="<%=vo.getNoticeNum()%>">
         <div class="row">
             <label for="title" class="col-form-label">제목</label>
@@ -82,8 +80,8 @@
         </div>
         <%if(user != null && user.equals("master")){%>
         <div class="row input-group">
-          <input type="button" value="수정하기" class="form-control" onclick="updateNotice()">
-          <input type="button" value="삭제하기" class="form-control" onclick="deleteNotice()">
+          <input type="submit" value="수정하기" class="form-control" onclick="updateNotice()">
+          <input type="submit" value="삭제하기" class="form-control" onclick="deleteNotice()">
         </div>
         <%} %>
     </form>

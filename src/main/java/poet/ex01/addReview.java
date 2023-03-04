@@ -28,7 +28,7 @@ public class AddReview extends HttpServlet {
 		vo.setPoetTitle(poetTitle);
 		ReviewDAO dao=new ReviewDAO();
 		dao.addList(vo);
-		response.sendRedirect("setpoet?poetTitle="+poetTitle);
+		response.sendRedirect("poetview.jsp?poetTitle="+poetTitle);
 	}
 
 }

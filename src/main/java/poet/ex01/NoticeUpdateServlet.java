@@ -26,7 +26,7 @@ public class NoticeUpdateServlet extends HttpServlet {
 		vo.setTitle(request.getParameter("title").toString());
 		NoticeDAO dao=new NoticeDAO();
 		dao.update(vo);
-		response.sendRedirect("/notice.jsp");
+		response.sendRedirect("NoticeServlet");
 	}
 
 }
